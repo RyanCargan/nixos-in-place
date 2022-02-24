@@ -47,13 +47,13 @@ set +e
 set -e
 [ ! "$arch" = "x86_64" ] && arch=i686
 
-primary_version=16.09
-secondary_version=680.4e14fd5
+primary_version=21.11
+secondary_version=336134.c99d2a0b6e3
 full_version=$primary_version.$secondary_version
 minimal_iso=nixos-minimal-$full_version-${arch}-linux.iso
 graphical_iso=nixos-graphical-$full_version-${arch}-linux.iso
 iso=$minimal_iso
-minimal_checksum=8700fd1861e83dba0c3c2cb348099d2499b2c52844d1771f1aacbf7458990bc8
+minimal_checksum=0556ddb05ef05bff275c59db6ed7ce79058bb68244e1270a46839a14077a77bb
 graphical_checksum=f1144de2645b1d099035416cb335e33cb56fdf71c8f8900c75a6a91ac2f49464
 checksum=$minimal_checksum
 
@@ -148,7 +148,9 @@ pushd "$working_directory"
   log "Downloading NixOS $iso"
   mkdir -p mnt host/nix
 
-  url=https://d3g5gsiof5omrk.cloudfront.net/nixos/$primary_version/nixos-$full_version
+  url=https://releases.nixos.org/nixos/$primary_version/nixos-$full_version
+  # https://releases.nixos.org/nixos/21.11/nixos-21.11.336134.c99d2a0b6e3/nixos-minimal-21.11.336134.c99d2a0b6e3-x86_64-linux.iso
+  # url=https://d3g5gsiof5omrk.cloudfront.net/nixos/$primary_version/nixos-$full_version
   wget -c $url/$iso
 
   # From $url/$iso.sha256
